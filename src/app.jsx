@@ -20,35 +20,31 @@ class App extends Component {
   }
 
   render() {
-    let _title, _desc;
-    if (this.state.mode === "welcome") {
+    let _title = null;
+    let _desc = null;
+    let _content = this.state.mode;
+    if (_content === "welcome") {
       _title = this.state.welcome.title;
       _desc = this.state.welcome.desc;
-    } else if (this.state.mode === "read") {
-      _title = this.state.contents[0].title;
-      _desc = this.state.contents[0].desc;
+    } else if (_content !== "welcome") {
+      _title = this.state.contents[_content - 1].title;
+      _desc = this.state.contents[_content - 1].desc;
     }
     return (
       <div className="app">
-        {/* <Subject
+        <Subject
           title={this.state.subject.title}
           sub={this.state.subject.sub}
-        /> */}
-        <header>
-          <h1>
-            <a
-              href="/"
-              onClick={(e) => {
-                console.log(e);
-                e.preventDefault();
-              }}
-            >
-              {this.state.subject.title}
-            </a>
-          </h1>
-          {this.state.subject.sub}
-        </header>
-        <TOC data={this.state.contents} />
+          onChangePage={(props) => {
+            this.setState({ mode: props });
+          }}
+        />
+        <TOC
+          data={this.state.contents}
+          onChangePage={(props) => {
+            this.setState({ mode: props });
+          }}
+        />
         <Content title={_title} description={_desc} />
       </div>
     );

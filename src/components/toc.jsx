@@ -7,7 +7,16 @@ class TOC extends Component {
     contents.forEach((el) => {
       lists.push(
         <li key={el.id}>
-          <a href={"/content/" + el.id}>{el.title}</a>
+          <a
+            href={"/content/" + el.id}
+            data={el.id}
+            onClick={(e) => {
+              e.preventDefault();
+              this.props.onChangePage(el.id);
+            }}
+          >
+            {el.title}
+          </a>
         </li>
       );
     });
