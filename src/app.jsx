@@ -3,14 +3,15 @@ import { Component } from "react";
 import TOC from "./components/toc";
 import Subject from "./components/subject";
 import ReadContent from "./components/readContent";
-import CreateContent from "./components/createContent";
 import Control from "./components/control";
+import CreateContent from "./components/createContent";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       mode: "welcome",
+      control: null,
       subject: { title: "WEB", sub: "World Wide Web!" },
       welcome: { title: "welcome", desc: "Hello, React!" },
       contents: [
@@ -24,14 +25,15 @@ class App extends Component {
   render() {
     let _title = null;
     let _desc = null;
-    let _content = this.state.mode;
-    if (_content === "welcome") {
+    let _mode = this.state.mode;
+    if (_mode === "welcome") {
       _title = this.state.welcome.title;
       _desc = this.state.welcome.desc;
-    } else if (_content !== "welcome") {
-      _title = this.state.contents[_content - 1].title;
-      _desc = this.state.contents[_content - 1].desc;
+    } else if (isNaN()) {
+      _title = this.state.contents[_mode - 1].title;
+      _desc = this.state.contents[_mode - 1].desc;
     }
+
     return (
       <div className="app">
         <Subject
@@ -49,9 +51,10 @@ class App extends Component {
         />
         <Control
           onChangeMode={(mode) => {
-            this.setState({ mode: mode });
+            this.setState({ control: mode });
           }}
         />
+        {this.state.control === "create" && <CreateContent />}
         <ReadContent title={_title} description={_desc} />
       </div>
     );

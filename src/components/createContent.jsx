@@ -10,7 +10,6 @@ class CreateContent extends Component {
           method="post"
           onSubmit={(e) => {
             e.preventDefault();
-            alert("createContent");
           }}
         >
           <p>
