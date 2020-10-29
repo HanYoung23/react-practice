@@ -2,7 +2,9 @@ import "./app.css";
 import { Component } from "react";
 import TOC from "./components/toc";
 import Subject from "./components/subject";
-import Content from "./components/content";
+import ReadContent from "./components/readContent";
+import CreateContent from "./components/createContent";
+import Control from "./components/control";
 
 class App extends Component {
   constructor(props) {
@@ -45,7 +47,12 @@ class App extends Component {
             this.setState({ mode: props });
           }}
         />
-        <Content title={_title} description={_desc} />
+        <Control
+          onChangeMode={(mode) => {
+            this.setState({ mode: mode });
+          }}
+        />
+        <ReadContent title={_title} description={_desc} />
       </div>
     );
   }
