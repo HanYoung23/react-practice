@@ -22,6 +22,10 @@ class App extends Component {
     };
   }
 
+  onChange(content) {
+    this.setState({ contents: this.state.contents.concat(content) });
+  }
+
   render() {
     let _title = null;
     let _desc = null;
@@ -54,7 +58,15 @@ class App extends Component {
             this.setState({ control: mode });
           }}
         />
-        {this.state.control === "create" && <CreateContent />}
+        {this.state.control === "create" && (
+          <CreateContent
+            onChangeContents={(title) => {
+              this.onChange(title);
+            }}
+            onChangeId={this.state.contents.length}
+          />
+        )}
+        {/* {this.state.control === "update" && <UpdateContent />} */}
         <ReadContent title={_title} description={_desc} />
       </div>
     );
