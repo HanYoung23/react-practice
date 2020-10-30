@@ -5,6 +5,7 @@ import Subject from "./components/subject";
 import ReadContent from "./components/readContent";
 import Control from "./components/control";
 import CreateContent from "./components/createContent";
+import UpdateContent from "./components/updateContent";
 
 class App extends Component {
   constructor(props) {
@@ -66,7 +67,9 @@ class App extends Component {
             onChangeId={this.state.contents.length}
           />
         )}
-        {/* {this.state.control === "update" && <UpdateContent />} */}
+        {this.state.control === "update" && (
+          <UpdateContent title={_title} description={_desc} />
+        )}
         <ReadContent title={_title} description={_desc} />
       </div>
     );
