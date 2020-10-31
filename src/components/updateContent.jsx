@@ -5,19 +5,16 @@ class UpdateContent extends Component {
     let index = this.props.data;
     let items = [...this.props.contents];
     let item = { ...items[index] };
-    item.id = index;
+    item.id = index + 1;
     item.title = document.querySelector(".title").value;
     item.desc = document.querySelector("textarea").value;
     items[index] = item;
-    console.log(item);
-    this.props.onChangePage(items);
+    this.props.onChangeContents(items);
+    this.props.onChangeMode("delete");
   };
 
   onSubmit = (e) => {
     e.preventDefault();
-  };
-  onDelete = () => {
-    this.props.onChangeMode("delete");
   };
 
   render() {
@@ -26,25 +23,13 @@ class UpdateContent extends Component {
         <h2>Update</h2>
         <form action="/" method="post" onSubmit={this.onSubmit}>
           <p>
-            <input
-              value={this.props.title}
-              className="title"
-              type="text"
-              name="title"
-            />
+            <input className="title" type="text" name="title" />
           </p>
           <p>
-            <textarea className="text" name="desc">
-              {this.props.description}
-            </textarea>
+            <textarea className="text" name="desc"></textarea>
           </p>
           <p>
-            <input
-              type="submit"
-              value="수정하기"
-              onClick={this.onDelete}
-              onChange={this.onChange}
-            />
+            <input type="submit" value="수정하기" onClick={this.onChange} />
           </p>
         </form>
       </article>

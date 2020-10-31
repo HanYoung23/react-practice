@@ -15,6 +15,7 @@ class TOC extends Component {
             onClick={(e) => {
               e.preventDefault();
               this.props.onChangePage(el.id);
+              this.props.onChangeIndex(el.id - 1);
             }}
           >
             {el.title}

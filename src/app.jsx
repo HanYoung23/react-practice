@@ -32,15 +32,12 @@ class App extends Component {
     let _title = null;
     let _desc = null;
     let _mode = this.state.mode;
-    let _index = null;
     if (_mode === "welcome") {
       _title = this.state.welcome.title;
       _desc = this.state.welcome.desc;
     } else if (isNaN()) {
       _title = this.state.contents[_mode - 1].title;
       _desc = this.state.contents[_mode - 1].desc;
-      _index = _mode - 1;
-      this.setState({ index: _index });
     }
 
     return (
@@ -58,6 +55,9 @@ class App extends Component {
             this.setState({ mode: props });
             this.setState({ control: "delete" });
           }}
+          onChangeIndex={(index) => {
+            this.setState({ index: index });
+          }}
         />
         <Control
           onChangeMode={(mode) => {
@@ -74,7 +74,7 @@ class App extends Component {
         )}
         {this.state.control === "update" && (
           <UpdateContent
-            data={_index}
+            data={this.state.index}
             contents={this.state.contents}
             onChangeContents={(items) => {
               this.setState({ contents: items });
