@@ -1,35 +1,24 @@
 import React, { Component } from "react";
 
 class UpdateContent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: null,
-      title: null,
-      desc: null,
-    };
-  }
-
   onChange = () => {
-    const id = this.props.onChangeId + 1;
-    const title = document.querySelector(".title").value;
-    const text = document.querySelector("textarea").value;
-    if (title && text !== "") {
-      this.setState({ id: id, title: title, desc: text });
-    }
+    let index = this.props.data;
+    let items = [...this.props.contents];
+    let item = { ...items[index] };
+    item.id = index;
+    item.title = document.querySelector(".title").value;
+    item.desc = document.querySelector("textarea").value;
+    items[index] = item;
+    console.log(item);
+    this.props.onChangeContents(items);
   };
 
   onSubmit = (e) => {
-    let title = document.querySelector(".title").value;
-    let text = document.querySelector("textarea").value;
     e.preventDefault();
-    if (title && text !== "") {
-      this.props.onChangeContents(this.state);
-      document.querySelector(".title").value = "";
-      document.querySelector("textarea").value = "";
-    }
   };
-
+  onDelete = () => {
+    this.props.onChangeMode("delete");
+  };
   render() {
     return (
       <article>
@@ -42,21 +31,19 @@ class UpdateContent extends Component {
         >
           <p>
             <input
+              value={this.props.title}
               className="title"
               type="text"
               name="title"
-              placeholder="title"
             />
           </p>
           <p>
-            <textarea
-              className="text"
-              name="desc"
-              placeholder="description"
-            ></textarea>
+            <textarea className="text" name="desc">
+              {this.props.description}
+            </textarea>
           </p>
           <p>
-            <input type="submit" value="제출하기" />
+            <input type="submit" value="수정하기" onClick={this.onDelete} />
           </p>
         </form>
       </article>

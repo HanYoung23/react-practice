@@ -23,20 +23,22 @@ class App extends Component {
     };
   }
 
-  onChange(content) {
+  onChange = (content) => {
     this.setState({ contents: this.state.contents.concat(content) });
-  }
+  };
 
   render() {
     let _title = null;
     let _desc = null;
     let _mode = this.state.mode;
+    let _index = null;
     if (_mode === "welcome") {
       _title = this.state.welcome.title;
       _desc = this.state.welcome.desc;
     } else if (isNaN()) {
       _title = this.state.contents[_mode - 1].title;
       _desc = this.state.contents[_mode - 1].desc;
+      _index = _mode - 1;
     }
 
     return (
@@ -68,7 +70,16 @@ class App extends Component {
           />
         )}
         {this.state.control === "update" && (
-          <UpdateContent title={_title} description={_desc} />
+          <UpdateContent
+            data={_index}
+            contents={this.state.contents}
+            onChangeContents={(items) => {
+              this.setState({ contents: items });
+            }}
+            onChangeMode={(mode) => {
+              this.setState({ control: mode });
+            }}
+          />
         )}
         <ReadContent title={_title} description={_desc} />
       </div>

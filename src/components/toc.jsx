@@ -4,9 +4,11 @@ class TOC extends Component {
   render() {
     const lists = [];
     const contents = this.props.data;
+    let keyCount = 0;
     contents.forEach((el) => {
+      keyCount++;
       lists.push(
-        <li key={el.id}>
+        <li key={keyCount}>
           <a
             href={"/content/" + el.id}
             data={el.id}
