@@ -10,7 +10,7 @@ class UpdateContent extends Component {
     item.desc = document.querySelector("textarea").value;
     items[index] = item;
     console.log(item);
-    this.props.onChangeContents(items);
+    this.props.onChangePage(items);
   };
 
   onSubmit = (e) => {
@@ -19,16 +19,12 @@ class UpdateContent extends Component {
   onDelete = () => {
     this.props.onChangeMode("delete");
   };
+
   render() {
     return (
       <article>
         <h2>Update</h2>
-        <form
-          action="/"
-          method="post"
-          onSubmit={this.onSubmit}
-          onChange={this.onChange}
-        >
+        <form action="/" method="post" onSubmit={this.onSubmit}>
           <p>
             <input
               value={this.props.title}
@@ -43,7 +39,12 @@ class UpdateContent extends Component {
             </textarea>
           </p>
           <p>
-            <input type="submit" value="수정하기" onClick={this.onDelete} />
+            <input
+              type="submit"
+              value="수정하기"
+              onClick={this.onDelete}
+              onChange={this.onChange}
+            />
           </p>
         </form>
       </article>

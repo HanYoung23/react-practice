@@ -12,7 +12,7 @@ class App extends Component {
     super(props);
     this.state = {
       mode: "welcome",
-      control: null,
+      control: "delete",
       subject: { title: "WEB", sub: "World Wide Web!" },
       welcome: { title: "welcome", desc: "Hello, React!" },
       contents: [
@@ -20,6 +20,7 @@ class App extends Component {
         { id: 2, title: "CSS", desc: "CSS is..." },
         { id: 3, title: "JavaScript", desc: "JavaScript is..." },
       ],
+      index: null,
     };
   }
 
@@ -39,6 +40,7 @@ class App extends Component {
       _title = this.state.contents[_mode - 1].title;
       _desc = this.state.contents[_mode - 1].desc;
       _index = _mode - 1;
+      this.setState({ index: _index });
     }
 
     return (
@@ -54,6 +56,7 @@ class App extends Component {
           data={this.state.contents}
           onChangePage={(props) => {
             this.setState({ mode: props });
+            this.setState({ control: "delete" });
           }}
         />
         <Control
@@ -81,7 +84,9 @@ class App extends Component {
             }}
           />
         )}
-        <ReadContent title={_title} description={_desc} />
+        {this.state.control === "delete" && (
+          <ReadContent title={_title} description={_desc} />
+        )}
       </div>
     );
   }
