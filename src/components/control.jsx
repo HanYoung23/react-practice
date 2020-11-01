@@ -20,7 +20,9 @@ class Control extends Component {
             href="/"
             onClick={(e) => {
               e.preventDefault();
-              this.props.onChangeMode("update");
+              if (this.props.mode !== "welcome") {
+                this.props.onChangeMode("update");
+              }
             }}
           >
             update
@@ -32,7 +34,9 @@ class Control extends Component {
             value="delete"
             onClick={(e) => {
               e.preventDefault();
-              this.props.onChangeMode("delete");
+              if (this.props.mode !== "welcome") {
+                this.props.onChangeMode("delete");
+              }
             }}
           />
         </li>

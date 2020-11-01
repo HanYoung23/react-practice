@@ -6,6 +6,7 @@ import ReadContent from "./components/readContent";
 import Control from "./components/control";
 import CreateContent from "./components/createContent";
 import UpdateContent from "./components/updateContent";
+//import DeleteContent from "./components/deleteContent";
 
 class App extends Component {
   constructor(props) {
@@ -29,8 +30,7 @@ class App extends Component {
   };
 
   render() {
-    let _title = null;
-    let _desc = null;
+    let _title, _desc;
     let _mode = this.state.mode;
     if (_mode === "welcome") {
       _title = this.state.welcome.title;
@@ -45,8 +45,9 @@ class App extends Component {
         <Subject
           title={this.state.subject.title}
           sub={this.state.subject.sub}
-          onChangePage={(props) => {
-            this.setState({ mode: props });
+          onChangePage={(mode) => {
+            this.setState({ mode: mode });
+            this.setState({ control: "delete" });
           }}
         />
         <TOC
@@ -60,6 +61,7 @@ class App extends Component {
           }}
         />
         <Control
+          mode={this.state.mode}
           onChangeMode={(mode) => {
             this.setState({ control: mode });
           }}
@@ -74,7 +76,9 @@ class App extends Component {
         )}
         {this.state.control === "update" && (
           <UpdateContent
-            data={this.state.index}
+            title={_title}
+            desc={_desc}
+            index={this.state.index}
             contents={this.state.contents}
             onChangeContents={(items) => {
               this.setState({ contents: items });
