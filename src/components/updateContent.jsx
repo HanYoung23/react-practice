@@ -28,7 +28,6 @@ class UpdateContent extends Component {
     item.desc = document.querySelector("textarea").value;
     items[index] = item;
     this.props.onChangeContents(items);
-    this.props.onChangeMode("delete");
   };
 
   onSubmit = (e) => {

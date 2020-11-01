@@ -6,7 +6,6 @@ import ReadContent from "./components/readContent";
 import Control from "./components/control";
 import CreateContent from "./components/createContent";
 import UpdateContent from "./components/updateContent";
-//import DeleteContent from "./components/deleteContent";
 
 class App extends Component {
   constructor(props) {
@@ -21,7 +20,9 @@ class App extends Component {
         { id: 2, title: "CSS", desc: "CSS is..." },
         { id: 3, title: "JavaScript", desc: "JavaScript is..." },
       ],
-      index: null,
+      currentIndex: null,
+      title: null,
+      desc: null,
     };
   }
 
@@ -29,67 +30,71 @@ class App extends Component {
     this.setState({ contents: this.state.contents.concat(content) });
   };
 
-  render() {
-    let _title, _desc;
-    let _mode = this.state.mode;
-    if (_mode === "welcome") {
-      _title = this.state.welcome.title;
-      _desc = this.state.welcome.desc;
-    } else if (isNaN()) {
-      _title = this.state.contents[_mode - 1].title;
-      _desc = this.state.contents[_mode - 1].desc;
-    }
+  onChangePage = (id) => {
+    let content = this.state.contents.find((e) => e.id === id);
+    let title = content.title;
+    let desc = content.desc;
+    this.setState({ mode: id, title: title, desc: desc, control: "delete" });
+  };
 
+  render() {
     return (
       <div className="app">
         <Subject
           title={this.state.subject.title}
           sub={this.state.subject.sub}
           onChangePage={(mode) => {
-            this.setState({ mode: mode });
-            this.setState({ control: "delete" });
+            this.setState({ mode: mode, control: "delete" });
           }}
         />
         <TOC
-          data={this.state.contents}
-          onChangePage={(props) => {
-            this.setState({ mode: props });
-            this.setState({ control: "delete" });
+          contents={this.state.contents}
+          onChangePage={(id) => {
+            this.onChangePage(id);
           }}
           onChangeIndex={(index) => {
-            this.setState({ index: index });
+            this.setState({ currentIndex: index });
           }}
         />
         <Control
+          index={this.state.currentIndex}
+          contents={this.state.contents}
           mode={this.state.mode}
           onChangeMode={(mode) => {
             this.setState({ control: mode });
           }}
+          onChangeContents={(contents, nextId) => {
+            console.log("asdf", nextId);
+            this.setState({ contents: contents });
+            this.onChangePage(nextId); /////////
+          }}
         />
         {this.state.control === "create" && (
           <CreateContent
-            onChangeContents={(title) => {
-              this.onChange(title);
+            onChangeContents={(content) => {
+              this.onChange(content);
             }}
             onChangeId={this.state.contents.length}
           />
         )}
         {this.state.control === "update" && (
           <UpdateContent
-            title={_title}
-            desc={_desc}
-            index={this.state.index}
+            title={this.state.title}
+            desc={this.state.desc}
+            index={this.state.currentIndex}
             contents={this.state.contents}
             onChangeContents={(items) => {
-              this.setState({ contents: items });
-            }}
-            onChangeMode={(mode) => {
-              this.setState({ control: mode });
+              this.setState({ contents: items, control: "delete" });
             }}
           />
         )}
         {this.state.control === "delete" && (
-          <ReadContent title={_title} description={_desc} />
+          <ReadContent
+            mode={this.state.mode}
+            welcome={this.state.welcome}
+            title={this.state.title}
+            desc={this.state.desc}
+          />
         )}
       </div>
     );

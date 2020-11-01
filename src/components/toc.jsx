@@ -1,9 +1,18 @@
 import { Component } from "react";
 
 class TOC extends Component {
+  OnFindIndex = (id) => {
+    let index = this.props.contents
+      .map((content) => {
+        return content.id;
+      })
+      .indexOf(id);
+    return index;
+  };
+
   render() {
     const lists = [];
-    const contents = this.props.data;
+    const contents = this.props.contents;
     let keyCount = 0;
     contents.forEach((el) => {
       keyCount++;
@@ -15,7 +24,7 @@ class TOC extends Component {
             onClick={(e) => {
               e.preventDefault();
               this.props.onChangePage(el.id);
-              this.props.onChangeIndex(el.id - 1);
+              this.props.onChangeIndex(this.OnFindIndex(el.id));
             }}
           >
             {el.title}
