@@ -37,6 +37,13 @@ class App extends Component {
     this.setState({ mode: id, title: title, desc: desc, control: "delete" });
   };
 
+  onReset = () => {
+    this.setState({
+      mode: "welcome",
+      control: "delete",
+    });
+  };
+
   render() {
     return (
       <div className="app">
@@ -63,10 +70,9 @@ class App extends Component {
           onChangeMode={(mode) => {
             this.setState({ control: mode });
           }}
-          onChangeContents={(contents, nextId) => {
-            console.log("asdf", nextId);
+          onChangeContents={(contents) => {
             this.setState({ contents: contents });
-            this.onChangePage(nextId); /////////
+            this.onReset();
           }}
         />
         {this.state.control === "create" && (

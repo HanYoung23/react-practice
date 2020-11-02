@@ -5,12 +5,7 @@ class Control extends Component {
     let index = this.props.index;
     let contents = [...this.props.contents];
     contents.splice(index, 1);
-    let nextIndex = index - 1;
-    if (index === 0) {
-      nextIndex = 0;
-    }
-    let nextId = contents[nextIndex].id;
-    this.props.onChangeContents(contents, nextId);
+    this.props.onChangeContents(contents);
   };
 
   render() {
