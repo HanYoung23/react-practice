@@ -5,13 +5,18 @@
 
 플레이 -> https://hanyoung23.github.io/My-Dictionary/
 
-#### 기능()
-- Shuffle => 랜덤으로 각 퍼즐에 좌표부여 (Math.floor/ Math.random())
-- Undo => 배열로 동작 히스토리 관리 (array.slice()/ array.pop()/ array.push())
-- 3x3/4x4/5x5 => 각 퍼즐 개수에 따라 이미지 조정 (parseInt(event.target.id.charAt(0))/)
-- Time => 게임 상황에 따라 타이머 동작/멈추기 (setInterval()/ clearInterval()/ Math.floor)
-- PopUp => 게임 종료 시 배너 & 리플레이 버튼 구현 (popUp.style.visibility/ popUpMessage.innerHTML)
-- Buttons => 버튼들의 이벤트 부여/제거 (addEventListener()/ removeEventListener())
+#### 사용된 기능()
+- e.preventDefault(); // 링크, submit의 기능 제거
+- this.props.contents.map((content) => {return content.id;}).indexOf(id) // 배열의 인덱스 값만 도출
+- let index = this.props.index;
+  let items = [...this.props.contents];
+  let item = { ...items[index] };
+  item.id = index + 1;
+  item.title = document.querySelector(".title").value;
+  item.desc = document.querySelector("textarea").value;
+  items[index] = item;
+  this.props.onChangeContents(items);
+  // 리액트에서 배열을 복사 후 수정하여 setState업데이트
 
 #### 어플리케이션 이미지.png
-![sliding puzzle complete](https://user-images.githubusercontent.com/67942048/96876361-51dbe880-14b3-11eb-9bb5-c050ca7dc04a.png)
+![mydictionary](https://user-images.githubusercontent.com/67942048/98089636-5e563d00-1ec6-11eb-92a8-3a2af1abf58c.png)
