@@ -14,14 +14,32 @@ class App extends Component {
       mode: "welcome",
       control: "delete",
       subject: {
-        title: "My Dictionary",
-        sub: "you can write down your acknowledge here!",
+        title: "My Dictionary 📖",
+        sub: "you can write down here whatever you want",
       },
-      welcome: { title: "welcome", desc: "Hello, React!" },
+      welcome: {
+        title: "welcome!",
+        desc:
+          "this project is made with React library. \n you can add your list with an add button below this text, or edit it,\n or delete it.",
+      },
       contents: [
-        { id: 1, title: "HTML", desc: "HTML is..." },
-        { id: 2, title: "CSS", desc: "CSS is..." },
-        { id: 3, title: "JavaScript", desc: "JavaScript is..." },
+        {
+          id: 1,
+          title: "REST API",
+          desc:
+            "REST or RESTful API design Representational State Transfer is designed to take advantage of existing protocols.\n While REST can be used over nearly any protocol, it usually takes advantage of HTTP when used for Web APIs.\n This means that developers do not need to install libraries or additional software in order to take advantage of a REST API design.\n REST API Design was defined by Dr.\n Roy Fielding in his 2000 doctorate dissertation.\n It is notable for its incredible layer of flexibility.\n Since data is not tied to methods and resources, REST has the ability to handle multiple types of calls, return different data formats and even change structurally with the correct implementation of hypermedia.",
+        },
+        {
+          id: 2,
+          title: "React",
+          desc: `React is a JavaScript library created by Facebook \n React is a User Interface (UI) library \n React is a tool for building UI components`,
+        },
+        {
+          id: 3,
+          title: "Babel",
+          desc:
+            "Babel is a JavaScript compiler that can translate markup or programming languages into JavaScript. \nWith Babel, you can use the newest features of JavaScript (ES6 - ECMAScript 2015).\n Babel is available for different conversions. React uses Babel to convert JSX into JavaScript.",
+        },
       ],
       currentIndex: null,
       title: null,
@@ -66,18 +84,6 @@ class App extends Component {
             this.setState({ currentIndex: index });
           }}
         />
-        <Control
-          index={this.state.currentIndex}
-          contents={this.state.contents}
-          mode={this.state.mode}
-          onChangeMode={(mode) => {
-            this.setState({ control: mode });
-          }}
-          onChangeContents={(contents) => {
-            this.setState({ contents: contents });
-            this.onReset();
-          }}
-        />
         {this.state.control === "create" && (
           <CreateContent
             onChangeContents={(content) => {
@@ -105,6 +111,18 @@ class App extends Component {
             desc={this.state.desc}
           />
         )}
+        <Control
+          index={this.state.currentIndex}
+          contents={this.state.contents}
+          mode={this.state.mode}
+          onChangeMode={(control) => {
+            this.setState({ control: control });
+          }}
+          onChangeContents={(contents) => {
+            this.setState({ contents: contents });
+            this.onReset();
+          }}
+        />
       </div>
     );
   }

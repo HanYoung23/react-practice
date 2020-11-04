@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { faEraser } from "@fortawesome/free-solid-svg-icons";
 
 class Control extends Component {
   onChange = () => {
@@ -12,18 +16,18 @@ class Control extends Component {
     return (
       <ul className="control_ul">
         <li className="control_li">
-          <a
+          <button
             href="/"
             onClick={(e) => {
               e.preventDefault();
               this.props.onChangeMode("create");
             }}
           >
-            create
-          </a>
+            <FontAwesomeIcon className="icon" icon={faPlus} />
+          </button>
         </li>
         <li className="control_li">
-          <a
+          <button
             href="/"
             onClick={(e) => {
               e.preventDefault();
@@ -32,24 +36,26 @@ class Control extends Component {
               }
             }}
           >
-            update
-          </a>
+            <FontAwesomeIcon className="icon" icon={faPen} />
+          </button>
         </li>
-        <li>
-          <input
+        <li className="control_li">
+          <button
             className="control_input"
             type="button"
             value="delete"
             onClick={(e) => {
               e.preventDefault();
-              if (this.props.mode !== "welcome") {
+              if (this.props.control !== "welcome") {
                 this.onChange();
-                this.props.onChangeMode("welcome");
+                this.props.onChangeMode("delete");
               } else {
                 this.props.onChangeMode("delete");
               }
             }}
-          />
+          >
+            <FontAwesomeIcon className="icon" icon={faEraser} />
+          </button>
         </li>
       </ul>
     );

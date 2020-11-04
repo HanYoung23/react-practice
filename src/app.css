@@ -3,55 +3,85 @@
   --padding-header: 40px;
   /* width */
   --width-screen: 600px;
+  /* height */
+  --read-height: 400px;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: rgb(36, 32, 32);
 }
 
 a {
   text-decoration: none;
+  background-color: transparent;
+}
+
+ul,
+li,
+article,
+h2,
+p,
+input,
+form,
+textarea {
+  background-color: transparent;
 }
 
 .app {
-  background-color: aqua;
   text-align: center;
+  height: 900px;
 }
 
 /* Subject */
 .sub_header {
-  background-color: blueviolet;
+  background: url(./img/books.png);
   padding: var(--padding-header) 0;
   margin: 0 auto;
 }
 
 .sub_header h1 {
   padding: calc(var(--padding-header) / 2) 0;
+  width: fit-content;
+  padding: 0 20px;
+  margin: 0 auto 8px auto;
+}
+
+.sub_header h1 a {
+  color: aliceblue;
+}
+
+.sub_header .sub_subText {
+  font-size: 20px;
+  color: aliceblue;
+  width: fit-content;
+  padding: 0 12px;
+  margin: auto;
 }
 
 /* TOC */
 .toc_nav {
-  background-color: tomato;
+  background: transparent;
   margin: auto;
   width: var(--width-screen);
   text-align: start;
-}
-
-.toc_ul {
-  list-style-type: upper-roman;
   padding: 20px 0;
 }
 
+.toc_ul {
+  list-style-type: none;
+}
+
 .toc_li {
-  background-color: burlywood;
+  background: whitesmoke;
   padding: 6px 10px;
 }
 
 /* Control */
 .control_ul {
-  background-color: aquamarine;
+  background: transparent;
   width: var(--width-screen);
   margin: auto;
   list-style: none;
@@ -60,9 +90,64 @@ a {
   padding: 20px;
 }
 
-.control_li,
-.control_input {
-  background-color: yellow;
-  padding: 8px;
+.control_li button {
+  background-color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  outline: none;
+  font-size: 16px;
 }
-/* 링크 버튼처럼부터~ */
+
+.control_li button:hover {
+  background: tomato;
+  color: white;
+  transition: 0.3s all;
+}
+
+.control_li button:active {
+  transform: translateY(4px);
+  transition: 0.3s all;
+}
+
+.control_li button .icon {
+  background-color: transparent;
+}
+
+/* Read */
+.content_article {
+  background: whitesmoke;
+  width: var(--width-screen);
+  margin: 0 auto 20px auto;
+  text-align: start;
+  padding: 10px;
+  height: var(--read-height);
+}
+
+.content_article .content_header {
+  padding-bottom: 10px;
+}
+
+.content_article .title {
+  width: 50%;
+  padding: 4px;
+  margin-bottom: 6px;
+  outline: none;
+}
+
+.content_article .text {
+  width: 100%;
+  height: 200px;
+  padding: 4px;
+  margin-bottom: 6px;
+  outline: none;
+}
+
+.content_article .submit {
+  width: 40px;
+  height: 28px;
+}

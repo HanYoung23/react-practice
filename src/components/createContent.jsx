@@ -32,8 +32,8 @@ class CreateContent extends Component {
 
   render() {
     return (
-      <article>
-        <h2>Create</h2>
+      <article className="content_article">
+        <h2 className="content_header">목록 추가</h2>
         <form
           action="/"
           method="post"
@@ -56,7 +56,7 @@ class CreateContent extends Component {
             ></textarea>
           </p>
           <p>
-            <input type="submit" value="제출하기" />
+            <input className="submit" type="submit" value="확인" />
           </p>
         </form>
       </article>

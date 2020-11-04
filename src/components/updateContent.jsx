@@ -36,8 +36,8 @@ class UpdateContent extends Component {
 
   render() {
     return (
-      <article>
-        <h2>Update</h2>
+      <article className="content_article">
+        <h2 className="content_header">내용 수정</h2>
         <form action="/" method="post" onSubmit={this.onSubmit}>
           <p>
             <input
@@ -57,7 +57,12 @@ class UpdateContent extends Component {
             ></textarea>
           </p>
           <p>
-            <input type="submit" value="수정하기" onClick={this.onEdit} />
+            <input
+              className="submit"
+              type="submit"
+              value="확인"
+              onClick={this.onEdit}
+            />
           </p>
         </form>
       </article>
