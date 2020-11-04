@@ -10,8 +10,8 @@ class Control extends Component {
 
   render() {
     return (
-      <ul>
-        <li>
+      <ul className="control_ul">
+        <li className="control_li">
           <a
             href="/"
             onClick={(e) => {
@@ -22,7 +22,7 @@ class Control extends Component {
             create
           </a>
         </li>
-        <li>
+        <li className="control_li">
           <a
             href="/"
             onClick={(e) => {
@@ -37,6 +37,7 @@ class Control extends Component {
         </li>
         <li>
           <input
+            className="control_input"
             type="button"
             value="delete"
             onClick={(e) => {

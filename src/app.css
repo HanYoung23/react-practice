@@ -1,0 +1,68 @@
+:root {
+  /* padding */
+  --padding-header: 40px;
+  /* width */
+  --width-screen: 600px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+.app {
+  background-color: aqua;
+  text-align: center;
+}
+
+/* Subject */
+.sub_header {
+  background-color: blueviolet;
+  padding: var(--padding-header) 0;
+  margin: 0 auto;
+}
+
+.sub_header h1 {
+  padding: calc(var(--padding-header) / 2) 0;
+}
+
+/* TOC */
+.toc_nav {
+  background-color: tomato;
+  margin: auto;
+  width: var(--width-screen);
+  text-align: start;
+}
+
+.toc_ul {
+  list-style-type: upper-roman;
+  padding: 20px 0;
+}
+
+.toc_li {
+  background-color: burlywood;
+  padding: 6px 10px;
+}
+
+/* Control */
+.control_ul {
+  background-color: aquamarine;
+  width: var(--width-screen);
+  margin: auto;
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.control_li,
+.control_input {
+  background-color: yellow;
+  padding: 8px;
+}
+/* 링크 버튼처럼부터~ */

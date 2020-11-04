@@ -3,9 +3,10 @@ import { Component } from "react";
 class Subject extends Component {
   render() {
     return (
-      <header>
-        <h1>
+      <header className="sub_header">
+        <h1 className="sub_h1">
           <a
+            className="sub_text"
             href="/"
             onClick={(e) => {
               e.preventDefault();

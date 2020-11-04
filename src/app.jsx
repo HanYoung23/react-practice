@@ -13,7 +13,10 @@ class App extends Component {
     this.state = {
       mode: "welcome",
       control: "delete",
-      subject: { title: "WEB", sub: "World Wide Web!" },
+      subject: {
+        title: "My Dictionary",
+        sub: "you can write down your acknowledge here!",
+      },
       welcome: { title: "welcome", desc: "Hello, React!" },
       contents: [
         { id: 1, title: "HTML", desc: "HTML is..." },

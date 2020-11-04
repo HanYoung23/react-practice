@@ -17,7 +17,7 @@ class TOC extends Component {
     contents.forEach((el) => {
       keyCount++;
       lists.push(
-        <li key={keyCount}>
+        <li className="toc_li" key={keyCount}>
           <a
             href={"/content/" + el.id}
             data={el.id}
@@ -33,8 +33,8 @@ class TOC extends Component {
       );
     });
     return (
-      <nav>
-        <ul>{lists}</ul>
+      <nav className="toc_nav">
+        <ol className="toc_ul">{lists}</ol>
       </nav>
     );
   }
