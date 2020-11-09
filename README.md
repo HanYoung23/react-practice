@@ -3,7 +3,7 @@
 ### 리액트를 활용한 메모 어플리케이션입니다. (프로젝트 기간 - 5일)
 #HTML #CSS #Javascript #React
 
-플레이 -> https://hanyoung23.github.io/MyDictionary
+플레이 -> https://hanyoung23.github.io/react-practice/
 
 #### 사용된 기능()
 - e.preventDefault(); // 링크, submit의 기능 제거
